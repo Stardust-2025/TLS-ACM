@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: rabbitmq-cert
+  namespace: rabbitmq-tls
+spec:
+  secretName: rabbitmq-tls
+  duration: 2160h  # 90 days
+  renewBefore: 360h  # 15 days
+  issuerRef:
+    name: letsencrypt-dns
+    kind: ClusterIssuer
+  commonName: queue.artofsurfing.org
+  dnsNames:
+  - queue.artofsurfing.org

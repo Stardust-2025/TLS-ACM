@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-dns
+spec:
+  acme:
+    email: soloc.droid@gmail.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-dns-private-key
+    solvers:
+    - dns01:
+        route53:
+          region: il-central-1
+          hostedZoneID: Z00669001T9AYKAO2LQ0D
+          accessKeyIDSecretRef:
+            name: aws-credentials
+            key: awsAccessKeyId
+          secretAccessKeySecretRef:
+            name: aws-credentials
+            key: awsSecretAccessKey
